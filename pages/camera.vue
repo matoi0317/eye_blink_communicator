@@ -44,9 +44,11 @@ export default {
         }
     },
     mounted() {
+        const constraints = navigator.mediaDevices.getSupportedConstraints();
+        console.log(constraints)
         this.video = document.getElementById("v")
         navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "environment", width: 320, height: 240 },
+            video: { width: 320, height: 240 },
             audio: false
         })
         .then((stream) => {
