@@ -48,7 +48,7 @@ export default {
         console.log(constraints)
         this.video = document.getElementById("v")
         navigator.mediaDevices.getUserMedia({
-            video: { width: 320, height: 240 },
+            video: true,
             audio: false
         })
         .then((stream) => {
