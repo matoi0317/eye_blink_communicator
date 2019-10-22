@@ -48,7 +48,11 @@ export default {
         console.log(constraints)
         this.video = document.getElementById("v")
         navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "user" },
+            video: {
+                facingMode: {
+                    exact: "environment",
+                }
+            },
             audio: false
         })
         .then((stream) => {
