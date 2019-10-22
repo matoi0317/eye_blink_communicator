@@ -48,8 +48,8 @@ export default {
         const constraints = navigator.mediaDevices.getSupportedConstraints();
         console.log(constraints)
         this.video = document.getElementById("v")
-        const facingMode = { facingMode: "user" } // 内側
-        // const facingMode = { facingMode: { exact: "environment" } } // 外側
+        // const facingMode = { facingMode: "user" } // 内側
+        const facingMode = { facingMode: { exact: "environment" } } // 外側
         navigator.mediaDevices.getUserMedia({
             video: {
                 ...facingMode
