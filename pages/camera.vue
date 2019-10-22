@@ -10,7 +10,7 @@
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
           <div><button @click="start">スタート</button></div>
       </div>
-    <video id="v" width="640" height="480" class="video"></video>
+    <video id="v" width="640" height="480" class="video" autoplay></video>
     <canvas id="c" width="640" height="480"></canvas>
     <script src="https://shimabox.github.io/face_recognition_with_clmtrackr/js/clmtrackr.min.js"></script>
   </div>
@@ -37,7 +37,10 @@ export default {
     },
     mounted() {
         this.video = document.getElementById("v")
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment", width: 320, height: 240 },
+            audio: false
+        })
         .then((stream) => {
             console.log("cam")
             this.video.srcObject=stream
