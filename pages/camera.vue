@@ -1,5 +1,9 @@
 <template>
   <div>
+      <div v-if="isCamera === false" style="background: #ff5555;">
+          <div>カメラが起動していません</div>
+          <p v-if="cameraErr">{{ cameraErr }}</p>
+      </div>
       <div>
           left_top: {{ leftTop }}
           left_bottom: {{ leftBottom }}
@@ -12,7 +16,9 @@
       </div>
     <video id="v" width="640" height="480" class="video" autoplay></video>
     <canvas id="c" width="640" height="480"></canvas>
+    <!--
     <script src="https://shimabox.github.io/face_recognition_with_clmtrackr/js/clmtrackr.min.js"></script>
+    -->
   </div>
 </template>
 
@@ -33,6 +39,8 @@ export default {
             currentRate: 14,
             isMajor: false,
             isDetencting: false,
+            isCamera: false,
+            cameraErr: "",
         }
     },
     mounted() {
@@ -43,12 +51,16 @@ export default {
         })
         .then((stream) => {
             console.log("cam")
+            this.isCamera = true
             this.video.srcObject=stream
             this.video.play()
             this.ctracker = new clm.tracker();
             this.ctracker.init();
             this.ctracker.start(this.video);
             this.loop()
+        }).catch(err => {
+            console.log(err)
+            this.isCamera = false
         })
     },
 
