@@ -78,8 +78,8 @@ export default {
             if (position === false) {
                 return;
             }
-            this.leftTop = Math.floor(position[24][1] * 100)
-            this.leftBottom = Math.floor(position[26][1] * 100)
+            this.leftTop = Math.floor(position[24][1])
+            this.leftBottom = Math.floor(position[26][1])
             this.leftOpen = this.leftBottom - this.leftTop
             this.rightTop = Math.floor(position[29][1])
             this.rightBottom  = Math.floor(position[31][1])
