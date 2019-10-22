@@ -1,5 +1,12 @@
 
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/eye_blink_communicator/',
+  }
+} : {}
+
 export default {
+  ...routerBase,
   mode: 'spa',
   /*
   ** Headers of the page
