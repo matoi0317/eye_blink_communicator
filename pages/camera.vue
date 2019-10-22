@@ -14,7 +14,7 @@
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
           <div><button @click="start">スタート</button></div>
       </div>
-    <video id="v" width="640" height="480" class="video" autoplay></video>
+    <video id="v" width="640" height="480" class="video" autoplay playsinline></video>
     <canvas id="c" width="640" height="480"></canvas>
     <!--
     <script src="https://shimabox.github.io/face_recognition_with_clmtrackr/js/clmtrackr.min.js"></script>
