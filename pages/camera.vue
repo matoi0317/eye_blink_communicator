@@ -5,12 +5,13 @@
           <p v-if="cameraErr">{{ cameraErr }}</p>
       </div>
       <div>
-          left_top: {{ leftTop }}
-          left_bottom: {{ leftBottom }}
-          left_open: {{ leftOpen }}
-          right_top: {{ rightTop }}
-          right_bottom:{{ rightBottom }}
-          right_open: {{ rightOpen }}
+          <div>left_top: {{ leftTop }}</div>
+          <div>left_bottom: {{ leftBottom }}</div>
+          <div>left_open: {{ leftOpen }}</div>
+          <div>right_top: {{ rightTop }}</div>
+          <div>right_bottom:{{ rightBottom }}</div>
+          <div>right_open: {{ rightOpen }}</div>
+          <div>currnetRate: {{ currentRate }}</div>
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
           <div><button @click="start">スタート</button></div>
       </div>
