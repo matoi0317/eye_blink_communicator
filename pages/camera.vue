@@ -104,7 +104,7 @@ export default {
         },
         isOpen(top, bottom) {
             const s = this.currentRate
-            const a = s * 0.83
+            const a = s * 0.85
             if (bottom - top > a) {
                 return true
             }
