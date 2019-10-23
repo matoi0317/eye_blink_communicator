@@ -206,7 +206,7 @@ export default {
     opacity: 0.5; /*透明度*/
 }
 
-.title p3{
+.camera_title p3{
     position: absolute;
     font-size: 30px;
     top: 0px;
