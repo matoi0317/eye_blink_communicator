@@ -222,11 +222,11 @@ export default {
 
 .set-camera {
   position: absolute;
-  top: 0px;
-  left: 60px;
+  top: 5px;
+  left: 160px;
   font-size: 20px;
-  width: 100px;
-  height: 30px;
+  width: 130px;
+  height: 40px;
   background-color: lightseagreen;
   font-weight: bold;
 }
