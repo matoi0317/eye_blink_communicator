@@ -4,6 +4,9 @@
           <div>カメラが起動していません</div>
           <p v-if="cameraErr">{{ cameraErr }}</p>
       </div>
+      <div class="camera_title">
+          <p>撮影してください</p>
+      </div>
       <div>
           <!--
           <div>left_top: {{ leftTop }}</div> 
@@ -196,6 +199,21 @@ export default {
 
 
 <style>
+.camera_title {
+    width: 100%;
+    height: 50px;
+    background-color: lightseagreen;
+    opacity: 0.5; /*透明度*/
+}
+
+.title p{
+    position: absolute;
+    font-size: 30px;
+    top: 0px;
+    left: 150px;
+    color: white;
+    font-weight: bold;
+}
 .video{
     border: solid 2px lightseagreen;
 }
