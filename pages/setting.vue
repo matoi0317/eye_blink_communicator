@@ -63,7 +63,6 @@ export default {
   },
   methods:{
     save(){
-      alert("aaaa")
       console.log("aaaa", this.message1)
       const maxAge = 60 * 60 * 24 * 365 * 10
       this.$cookies.set("message1", this.message1, {
