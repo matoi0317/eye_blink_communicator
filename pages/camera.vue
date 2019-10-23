@@ -233,7 +233,7 @@ export default {
 
 .set-camera {
   position: absolute;
-  top: 360px;
+  top: 0px;
   left: 60px;
   font-size: 20px;
   width: 250px;
