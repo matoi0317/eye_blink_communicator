@@ -9,37 +9,37 @@
       <nuxt-link class="back" :to="{path:'./'}">◀︎back</nuxt-link>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="1回">
+        <input type="text" placeholder="1回" v-model="message1">
         </label>
       </div>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="2回">
+        <input type="text" placeholder="2回" v-model="message2">
         </label>
       </div>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="3回">
+        <input type="text" placeholder="3回" v-model="message3">
         </label>
       </div>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="4回">
+        <input type="text" placeholder="4回" v-model="message4">
         </label>
       </div>
        <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="5回">
+        <input type="text" placeholder="5回" v-model="message5">
         </label>
       </div>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="6回">
+        <input type="text" placeholder="6回" v-model="message6">
         </label>
       </div>
       <div class="cp_iptxt">
         <label class="ef">
-        <input type="text" placeholder="7回">
+        <input type="text" placeholder="7回" v-model="message7"> 
         </label>
       </div>
 
@@ -48,11 +48,53 @@
 
 <script>
 export default {
-    methods:{
-        save(){
-            alert("aaaa")
-        }
+  data() {
+    return {
+      message1: this.$cookies.get("message1"),
+      message2: this.$cookies.get("message2"),
+      message3: this.$cookies.get("message3"),
+      message4: this.$cookies.get("message4"),
+      message5: this.$cookies.get("message5"),
+      message6: this.$cookies.get("message6"),
+      message7: this.$cookies.get("message7"),
     }
+  },
+  mounted() {
+  },
+  methods:{
+    save(){
+      alert("aaaa")
+      console.log("aaaa", this.message1)
+      const maxAge = 60 * 60 * 24 * 365 * 10
+      this.$cookies.set("message1", this.message1, {
+        maxAge: maxAge,
+      })
+      console.log("bbbb", this.message2)
+      this.$cookies.set("message2", this.message2, {
+        maxAge: maxAge,
+      })
+      console.log("cccc", this.message3)
+      this.$cookies.set("message3", this.message3, {
+        maxAge: maxAge,
+      })
+      console.log("dddd", this.message4)
+      this.$cookies.set("message4", this.message4, {
+        maxAge: maxAge,
+      })
+      console.log("eeee", this.message5)
+      this.$cookies.set("message5", this.message5, {
+        maxAge: maxAge,
+      })
+      console.log("ffff", this.message6)
+      this.$cookies.set("message6", this.message6, {
+        maxAge: maxAge,
+      })
+      console.log("gggg", this.message7)
+      this.$cookies.set("message7", this.message7, {
+        maxAge: maxAge,
+      })
+    }
+  }
 }
 </script>
 
@@ -103,7 +145,8 @@ export default {
 	padding: 0.3em;
 	transition: 0.3s;
 	letter-spacing: 1px;
-	color: #aaaaaa;
+	color: #000;
+  font-weight: bold;
 	border: 1px solid #1b2538;
 	border-radius: 4px;
 }

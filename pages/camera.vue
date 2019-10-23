@@ -45,15 +45,17 @@ export default {
         }
     },
     mounted() {
+        console.log("test", this.$cookies.get("message1"))
         const constraints = navigator.mediaDevices.getSupportedConstraints();
         console.log(constraints)
         this.video = document.getElementById("v")
         // const facingMode = { facingMode: "user" } // 内側
-        const facingMode = { facingMode: { exact: "environment" } } // 外側
+        // const facingMode = { facingMode: { exact: "environment" } } // 外側
         navigator.mediaDevices.getUserMedia({
-            video: {
-                ...facingMode
-            },
+            // video: {
+            //     ...facingMode
+            // },
+            video: true,
             audio: false
         })
         .then((stream) => {
@@ -116,20 +118,28 @@ export default {
             this.currentRate = this.leftOpen;
             setTimeout(() => {
                 alert("測定終了" + this.eyeBlinkCount + "回瞬きを検知しました。")
+                if(this.eyeBlinkCount == 0){
+                }
                 if(this.eyeBlinkCount == 1){
-                    alert("YES")
+                    alert(this.$cookies.get("message1"))
                 }
                 if(this.eyeBlinkCount == 2){
-                    alert("NO")
+                    alert(this.$cookies.get("message2"))
                 }
                 if(this.eyeBlinkCount == 3){
-                    alert("あいう")
+                    alert(this.$cookies.get("message3"))
                 }
                 if(this.eyeBlinkCount == 4){
-                    alert("kakiku")
+                    alert(this.$cookies.get("message4"))
                 }
                 if(this.eyeBlinkCount == 5){
-                    alert("さしす")
+                    alert(this.$cookies.get("message5"))
+                }
+                if(this.eyeBlinkCount == 6){
+                    alert(this.$cookies.get("message6"))
+                }
+                if(this.eyeBlinkCount == 7){
+                    alert(this.$cookies.get("message7"))
                 }
             }, 10000)
         },

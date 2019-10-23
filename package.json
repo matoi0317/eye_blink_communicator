@@ -13,10 +13,11 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "@nuxtjs/bulma": "^1.2.1",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "@nuxtjs/bulma": "^1.2.1",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "cookie-universal-nuxt": "^2.0.18",
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "push-dir": "^0.4.1"
