@@ -13,6 +13,11 @@
           <div>right_open: {{ rightOpen }}</div>
           <div>currnetRate: {{ currentRate }}</div>
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
+          <div>mouse_top: {{ mouseTop }}</div>
+          <div>mouse_bottom: {{ mouseBottom }}</div>
+          <div>mouse_open: {{ mouseOpen }}</div>
+          <div>current_mouse: {{ currentMouseRate }}</div>
+          <div><span :style="{ color: openMouseLabel == 'あ' ? '#f00' : '#000' }">{{ openMouseLabel }}</span>: {{ mouseCount }}回</div>
           <div><button @click="start">スタート</button></div>
       </div>
     <video id="v" width="640" height="480" class="video" autoplay playsinline></video>
@@ -42,6 +47,14 @@ export default {
             isDetencting: false,
             isCamera: false,
             cameraErr: "",
+            mouseTop: 0,
+            mouseBottom: 0,
+            mouseOpen: 0,
+            openMouseLabel: "ん",
+            mouseCount: 0,
+            currentMouseRate: 14,
+            isMajor2: false,
+            isSurvey: false,
         }
     },
     mounted() {
@@ -103,19 +116,51 @@ export default {
             } else {
                 this.openEyeLabel = "閉"
             }
+
+            this.mouseTop = Math.floor(position[60][1])
+            this.mouseBottom = Math.floor(position[57][1])
+            this.mouseOpen = this.mouseBottom - this.mouseTop
+            const isOpen2 = this.isOpen2(this.mouseTop, this.mouseBottom)
+            if(isOpen2 == true) {
+                if (this.openMouseLabel == "ん") {
+                    if (this.isSurvey == false) {
+                        if(this.isMajor2) {
+                            this.mouseCount = this.mouseCount + 1
+                            this.isSurvey = true
+                            setTimeout(() => {
+                                this.isSurvey = false
+                            }, 500)
+                        }
+                    }
+                } 
+                this.openMouseLabel = "あ"
+            }else {
+                this.openMouseLabel = "ん"
+            }
         },
         isOpen(top, bottom) {
             const s = this.currentRate
             const a = s * 0.845
             if (bottom - top > a) {
-                return true
+                return false
             }
-            return false
+            return true
+        },
+        isOpen2(top2, bottom2) {
+            const m = this.currentMouseRate
+            const n = m * 3
+            if (bottom2 - top2 < n) {
+                return false
+            }
+            return true
         },
         start() {
             this.eyeBlinkCount = 0
+            this.mouseCount = 0
             this.isMajor = true
+            this.isMajor2 = true
             this.currentRate = this.leftOpen;
+            this.currentMouseRate = this.mouseOpen;
             setTimeout(() => {
                 alert("測定終了" + this.eyeBlinkCount + "回瞬きを検知しました。")
                 if(this.eyeBlinkCount == 0){
