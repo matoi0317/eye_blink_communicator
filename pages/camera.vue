@@ -163,7 +163,7 @@ export default {
             return true
         },
         a() {
-            alert("撮影を開始します。")
+            alert("撮影を開始します。画面に向かって瞬きをしてください。")
             this.eyeBlinkCount = 0
             this.mouseCount = 0
             this.isMajor = true
