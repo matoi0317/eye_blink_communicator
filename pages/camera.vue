@@ -163,6 +163,7 @@ export default {
             return true
         },
         a() {
+            alert("撮影を開始します。")
             this.eyeBlinkCount = 0
             this.mouseCount = 0
             this.isMajor = true
