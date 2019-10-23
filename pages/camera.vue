@@ -210,7 +210,7 @@ export default {
     position: absolute;
     font-size: 30px;
     top: 0px;
-    left: 150px;
+    left: 80px;
     color: white;
     font-weight: bold;
 }
