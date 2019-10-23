@@ -51,6 +51,7 @@ export default {
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
+    'nuxt-fontawesome',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     ['cookie-universal-nuxt', { parseJSON: false }]
@@ -59,6 +60,16 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
+
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
+  
   axios: {
   },
   /*

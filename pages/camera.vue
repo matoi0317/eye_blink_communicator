@@ -7,6 +7,9 @@
       <div class="camera_title">
           <p3>撮影してください</p3>
       </div>
+      <div class="buttons">
+          <button class="button set-camera">撮影</button>
+      </div>
       <nuxt-link class="camera_back" :to="{path:'./'}">◀︎back</nuxt-link>
       <div>
           <!--
@@ -226,5 +229,16 @@ export default {
 }
 .video{
     border: solid 2px lightseagreen;
+}
+
+.set-camera {
+  position: absolute;
+  top: 360px;
+  left: 60px;
+  font-size: 20px;
+  width: 250px;
+  height: 50px;
+  background-color: lightseagreen;
+  font-weight: bold;
 }
 </style>
