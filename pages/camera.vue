@@ -5,7 +5,7 @@
           <p v-if="cameraErr">{{ cameraErr }}</p>
       </div>
       <div class="camera_title">
-          <p>撮影してください</p>
+          <p3>撮影してください</p3>
       </div>
       <div>
           <!--
@@ -206,7 +206,7 @@ export default {
     opacity: 0.5; /*透明度*/
 }
 
-.title p{
+.title p3{
     position: absolute;
     font-size: 30px;
     top: 0px;
