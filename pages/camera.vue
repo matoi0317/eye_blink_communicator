@@ -18,14 +18,14 @@
           <div>right_bottom:{{ rightBottom }}</div>
           <div>right_open: {{ rightOpen }}</div>
           -->
-          <div>currnetRate: {{ currentRate }}</div>
+          <div>現在の値: {{ currentRate }}</div>
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
           <!--
           <div>mouse_top: {{ mouseTop }}</div>
           <div>mouse_bottom: {{ mouseBottom }}</div>
           <div>mouse_open: {{ mouseOpen }}</div>
           -->
-          <div>current_mouse: {{ currentMouseRate }}</div>
+          <div>現在の値: {{ currentMouseRate }}</div>
           <div><span :style="{ color: openMouseLabel == 'あ' ? '#f00' : '#000' }">{{ openMouseLabel }}</span>: {{ mouseCount }}回</div>
       </div>
     <video id="v" width="640" height="480" class="video" autoplay playsinline></video>
