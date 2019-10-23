@@ -4,9 +4,7 @@
           <div>カメラが起動していません</div>
           <p v-if="cameraErr">{{ cameraErr }}</p>
       </div>
-      <div class="camera_title">
-          <p3>撮影してください</p3>
-      </div>
+      <div class="camera_title"></div>
       <div class="buttons">
           <button class="button set-camera">撮影</button>
       </div>
@@ -210,15 +208,6 @@ export default {
     opacity: 0.5; /*透明度*/
 }
 
-.camera_title p3{
-    position: absolute;
-    font-size: 30px;
-    top: 0px;
-    left: 120px;
-    color: white;
-    font-weight: bold;
-}
-
 .camera_back {
     position: absolute;
     left: 0px;
@@ -236,8 +225,8 @@ export default {
   top: 0px;
   left: 60px;
   font-size: 20px;
-  width: 250px;
-  height: 50px;
+  width: 100px;
+  height: 30px;
   background-color: lightseagreen;
   font-weight: bold;
 }
