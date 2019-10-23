@@ -102,7 +102,7 @@ export default {
     width: 100%;
     height: 50px;
     background-color: lightseagreen;
-    opacity: 0.5;
+    opacity: 0.5; /*透明度*/
 }
 
 .setting-title p{
