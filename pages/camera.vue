@@ -6,9 +6,15 @@
       </div>
       <div class="camera_title"></div>
       <div class="buttons">
-          <button class="button set-camera" @click="a">撮影</button>
+          <button class="button set-camera" @click="a('button')">撮影</button>
       </div>
       <nuxt-link class="camera_back" :to="{path:'./'}">◀︎back</nuxt-link>
+      <div v-if="isMajor" style="background:#ff0000;text-align: center;color:#fff;">
+          計測中
+      </div>
+      <div v-if="mouseCountInterval" style="background:#ff8888;text-align: center;color:#fff;">
+          起動準備中 {{mouseOpenCount}}/3
+      </div>
       <div>
           <!--
           <div>left_top: {{ leftTop }}</div> 
@@ -20,12 +26,11 @@
           -->
           <div>現在の値: {{ currentRate }}</div>
           <div><span :style="{ color: openEyeLabel == '開' ? '#f00' : '#000' }">{{ openEyeLabel }}</span>: {{ eyeBlinkCount }}回</div>
-          <!--
           <div>mouse_top: {{ mouseTop }}</div>
           <div>mouse_bottom: {{ mouseBottom }}</div>
           <div>mouse_open: {{ mouseOpen }}</div>
-          -->
-          <div>現在の値: {{ currentMouseRate }}</div>
+          <div>現在の値: {{ currentMouseRate }} {{ mouseCountInterval }}</div>
+          <div>口を開けた回数: {{ mouseOpenCount }}</div>
           <div><span :style="{ color: openMouseLabel == 'あ' ? '#f00' : '#000' }">{{ openMouseLabel }}</span>: {{ mouseCount }}回</div>
       </div>
     <video id="v" width="640" height="480" class="video" autoplay playsinline></video>
@@ -63,6 +68,15 @@ export default {
             currentMouseRate: 14,
             isMajor2: false,
             isSurvey: false,
+            mouseOpenCount: 0,
+            mouseCountInterval: null,
+        }
+    },
+    watch: {
+        mouseOpenCount: function(val) {
+            if (val >= 3 ) {
+                this.a()
+            }
         }
     },
     mounted() {
@@ -93,7 +107,9 @@ export default {
             this.isCamera = false
         })
     },
-
+    destroyed() {
+        clearInterval(this.mouseCountInterval)
+    },
     methods: {
         loop() {
             requestAnimationFrame(this.loop)
@@ -132,12 +148,22 @@ export default {
             if(isOpen2 == true) {
                 if (this.openMouseLabel == "ん") {
                     if (this.isSurvey == false) {
-                        if(this.isMajor2) {
-                            this.mouseCount = this.mouseCount + 1
-                            this.isSurvey = true
-                            setTimeout(() => {
-                                this.isSurvey = false
-                            }, 500)
+                        this.mouseCount = this.mouseCount + 1
+                        if (!this.isMajor) {
+                          this.mouseOpenCount = this.mouseOpenCount + 1
+                        }
+                        this.isSurvey = true
+                        setTimeout(() => {
+                            this.isSurvey = false
+                        }, 500)
+                        if (this.mouseCountInterval === null && !this.isMajor) {
+                            console.log("startInterval")
+                            this.mouseCountInterval = setInterval(() => {
+                                console.log("interval")
+                                this.mouseOpenCount = 0;
+                                clearInterval(this.mouseCountInterval)
+                                this.mouseCountInterval = null
+                            }, 5000)
                         }
                     }
                 } 
@@ -156,45 +182,86 @@ export default {
         },
         isOpen2(top2, bottom2) {
             const m = this.currentMouseRate
-            const n = m * 3
+            const n = m * 2
             if (bottom2 - top2 < n) {
                 return false
             }
             return true
         },
-        a() {
-            alert("撮影を開始します。画面に向かって瞬きをしてください。")
+        a(from="") {
+            console.log("=== 計測スタート ===")
+            if (from === "button") {
+                alert("撮影を開始します。画面に向かって瞬きをしてください。")
+            }
             this.eyeBlinkCount = 0
             this.mouseCount = 0
             this.isMajor = true
             this.isMajor2 = true
             this.currentRate = this.leftOpen;
             this.currentMouseRate = this.mouseOpen;
+            clearInterval(this.mouseCountInterval)
+            this.mouseCountInterval = null
             setTimeout(() => {
-                alert("測定終了" + this.eyeBlinkCount + "回瞬きを検知しました。")
-                if(this.eyeBlinkCount == 0){
+                clearInterval(this.mouseCountInterval)
+                this.mouseOpenCount = 0;
+            }, 200)
+            
+            setTimeout(async () => {
+                if (from == "button") {
+                  alert("測定終了" + this.eyeBlinkCount + "回瞬きを検知しました。")
                 }
+                this.isMajor = false
+                this.currentMouseRate = 14
+                let message = "..."
+                if(this.eyeBlinkCount > 7){
+                    const m = "message" + this.eyeBlinkCount
+                    if (from == "button") {
+                      alert("計測できませんでした")
+                    }
+                    message = "計測できませんでした"
+                } else {
+                    const m = "message" + this.eyeBlinkCount
+                    if (from == "button") {
+                      alert(this.$cookies.get(m))
+                    }
+                    message = this.$cookies.get(m)
+                }
+                /*
                 if(this.eyeBlinkCount == 1){
                     alert(this.$cookies.get("message1"))
+                    message = this.$cookies.get("message1")
                 }
                 if(this.eyeBlinkCount == 2){
                     alert(this.$cookies.get("message2"))
+                    message = this.$cookies.get("message2")
                 }
                 if(this.eyeBlinkCount == 3){
                     alert(this.$cookies.get("message3"))
+                    message = this.$cookies.get("message3")
                 }
                 if(this.eyeBlinkCount == 4){
                     alert(this.$cookies.get("message4"))
+                    message = this.$cookies.get("message4")
                 }
                 if(this.eyeBlinkCount == 5){
                     alert(this.$cookies.get("message5"))
+                    message = this.$cookies.get("message5")
                 }
                 if(this.eyeBlinkCount == 6){
                     alert(this.$cookies.get("message6"))
+                    message = this.$cookies.get("message6")
                 }
                 if(this.eyeBlinkCount == 7){
                     alert(this.$cookies.get("message7"))
+                    message = this.$cookies.get("message7")   
                 }
+                */
+               /*
+                const response = await this.$axios.post('http://localhost:5000/post', {
+                    blinkCount: this.eyeBlinkCount,
+                    message: message
+                })
+                */
             }, 10000)
         },
     }
