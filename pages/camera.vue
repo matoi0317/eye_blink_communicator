@@ -226,7 +226,6 @@ export default {
                     }
                     message = this.$cookies.get(m)
                 }
-                /*
                 if(this.eyeBlinkCount == 1){
                     alert(this.$cookies.get("message1"))
                     message = this.$cookies.get("message1")
@@ -255,13 +254,10 @@ export default {
                     alert(this.$cookies.get("message7"))
                     message = this.$cookies.get("message7")   
                 }
-                */
-               /*
                 const response = await this.$axios.post('http://localhost:5000/post', {
                     blinkCount: this.eyeBlinkCount,
                     message: message
                 })
-                */
             }, 10000)
         },
     }
