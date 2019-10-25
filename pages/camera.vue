@@ -268,7 +268,7 @@ export default {
                     }
                     message = this.$cookies.get("message7")   
                 }
-                const response = await this.$axios.post('http://localhost:5000/post', {
+                const response = await this.$axios.post('http://192.168.0.6:5000/post', {
                     blinkCount: this.eyeBlinkCount,
                     message: message
                 })
