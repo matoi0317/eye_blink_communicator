@@ -227,31 +227,45 @@ export default {
                     message = this.$cookies.get(m)
                 }
                 if(this.eyeBlinkCount == 1){
-                    alert(this.$cookies.get("message1"))
+                    if (from == "button") {
+                        alert(this.$cookies.get("message1"))
+                    }
                     message = this.$cookies.get("message1")
                 }
                 if(this.eyeBlinkCount == 2){
-                    alert(this.$cookies.get("message2"))
+                    if (from == "button") {
+                        alert(this.$cookies.get("message2"))
+                    }                    
                     message = this.$cookies.get("message2")
                 }
                 if(this.eyeBlinkCount == 3){
-                    alert(this.$cookies.get("message3"))
+                    if (from == "button") {
+                        alert(this.$cookies.get("message3"))
+                    }
                     message = this.$cookies.get("message3")
                 }
                 if(this.eyeBlinkCount == 4){
-                    alert(this.$cookies.get("message4"))
+                    if (from == "button"){
+                        alert(this.$cookies.get("message4"))
+                    }
                     message = this.$cookies.get("message4")
                 }
                 if(this.eyeBlinkCount == 5){
-                    alert(this.$cookies.get("message5"))
+                    if (from == "button"){
+                        alert(this.$cookies.get("message5"))
+                    }
                     message = this.$cookies.get("message5")
                 }
                 if(this.eyeBlinkCount == 6){
-                    alert(this.$cookies.get("message6"))
+                    if (from == "button"){
+                        alert(this.$cookies.get("message6"))
+                    }
                     message = this.$cookies.get("message6")
                 }
                 if(this.eyeBlinkCount == 7){
-                    alert(this.$cookies.get("message7"))
+                    if (from == "button"){
+                        alert(this.$cookies.get("message7"))
+                    }
                     message = this.$cookies.get("message7")   
                 }
                 const response = await this.$axios.post('http://localhost:5000/post', {
