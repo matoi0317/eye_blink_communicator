@@ -268,7 +268,7 @@ export default {
                     }
                     message = this.$cookies.get("message7")   
                 }
-                const response = await this.$axios.post('https://7a4c1754.ngrok.io/post', {
+                const response = await this.$axios.post('https://https://eca46a33.ngrok.io/post', {
                     blinkCount: this.eyeBlinkCount,
                     message: message
                 })
