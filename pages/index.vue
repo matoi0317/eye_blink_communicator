@@ -7,7 +7,7 @@
     <div class="sub-title">あなたとしゃべりたい</div>
     <nuxt-link class="button run-camera" :to="{path:'/camera'}"> カメラを起動</nuxt-link>
     <nuxt-link class="setting-text" :to="{path:'/setting'}"> 設定を開く</nuxt-link>
-    <div>ver. 1.0.0</div>
+    <div>ver. 1.1.0</div>
   </div>
 </template>
 
