@@ -268,7 +268,7 @@ export default {
                     }
                     message = this.$cookies.get("message7")   
                 }
-                const response = await this.$axios.post('https://gentle-dawn-83651.herokuapp.com/post', {
+                const response = await this.$axios.post('https://localhost:5000/post', {
                     blinkCount: this.eyeBlinkCount,
                     message: message
                 })
